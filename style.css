@@ -749,33 +749,108 @@
   align-items: center;
 }
 .machinery-visual {
-  aspect-ratio: 4/3;
-  background: linear-gradient(135deg, #1a3d1a 0%, #2d6a2e 100%);
   border-radius: var(--radius-xl);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 100px;
   overflow: hidden;
   position: relative;
 }
-.machinery-visual__placeholder {
+
+/* ========== CAROUSEL ========== */
+.carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #0a1f0a;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+.carousel__track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.carousel__slide {
   position: absolute;
   inset: 0;
+  opacity: 0;
+  transition: opacity 500ms ease;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.85);
-  gap: var(--space-4);
 }
-.machinery-visual__placeholder span:first-child {
-  font-size: 72px;
+.carousel__slide.active {
+  opacity: 1;
 }
-.machinery-visual__placeholder span:last-child {
-  font-size: var(--text-sm);
-  color: rgba(255,255,255,0.5);
-  font-style: italic;
+.carousel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.carousel__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-6) var(--space-6) var(--space-4);
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: rgba(255,255,255,0.9);
+  color: #1a3d1a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background var(--transition-interactive), transform var(--transition-interactive);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.carousel__btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.08);
+}
+.carousel__btn--prev {
+  left: var(--space-4);
+}
+.carousel__btn--next {
+  right: var(--space-4);
+}
+.carousel__dots {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-2);
+  z-index: 2;
+}
+.carousel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  border: 2px solid rgba(255,255,255,0.7);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition-interactive), border-color var(--transition-interactive);
+}
+.carousel__dot.active {
+  background: #fff;
+  border-color: #fff;
+}
+.carousel__dot:hover {
+  background: rgba(255,255,255,0.5);
 }
 .machinery-info__badge {
   display: inline-block;
@@ -834,6 +909,109 @@
 @media (max-width: 768px) {
   .machinery-showcase {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ========== FEATURED SERVICE CARD ========== */
+.service-card--featured {
+  border: 2px solid var(--color-primary);
+  background: var(--color-primary-light);
+  position: relative;
+  overflow: hidden;
+}
+.service-card--featured::before {
+  content: 'NUEVO';
+  position: absolute;
+  top: 16px;
+  right: -30px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 4px 36px;
+  transform: rotate(45deg);
+}
+
+/* ========== DRONES SHOWCASE ========== */
+.drone-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+.drone-visual {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+.drone-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 3/4;
+}
+.drone-info__badge {
+  display: inline-block;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-4);
+}
+.drone-info__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.02em;
+}
+.drone-info__desc {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+  line-height: 1.7;
+}
+.drone-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-8);
+  display: grid;
+  gap: var(--space-3);
+}
+.drone-features li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+.drone-features li::before {
+  content: '\2713';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .drone-showcase {
+    grid-template-columns: 1fr;
+  }
+  .drone-visual img {
+    aspect-ratio: 4/3;
   }
 }
 
