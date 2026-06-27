@@ -24,7 +24,33 @@
   <link rel="stylesheet" href="./base.css">
   <link rel="stylesheet" href="./style.css">
   
-  <!-- Favicon -->
+
+  <!-- Brand Modal CSS -->
+  <style>
+    .brand-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9999;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(5px)}
+    .brand-modal-overlay.open{display:flex}
+    .brand-modal{background:var(--color-surface);border-radius:var(--radius-xl);max-width:780px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.45);animation:modalIn .22s ease}
+    @keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(14px)}to{opacity:1;transform:scale(1) translateY(0)}}
+    .brand-modal__header{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.5rem;border-bottom:1px solid var(--color-border)}
+    .brand-modal__title{font-family:var(--font-display);font-size:1.4rem;font-weight:800;color:var(--color-primary)}
+    .brand-modal__close{background:none;border:none;cursor:pointer;color:var(--color-text-muted);padding:.4rem;border-radius:50%;line-height:0;transition:background .15s}
+    .brand-modal__close:hover{background:var(--color-border)}
+    .brand-modal__gallery-wrap{position:relative;background:#111;line-height:0}
+    .brand-modal__main-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+    .brand-modal__nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.55);border:none;color:#fff;width:2.6rem;height:2.6rem;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .brand-modal__nav--prev{left:.75rem}.brand-modal__nav--next{right:.75rem}
+    .brand-modal__thumbs{display:flex;gap:.5rem;padding:.7rem 1.2rem;overflow-x:auto;background:var(--color-surface-alt,#f0f0f0)}
+    .brand-modal__thumb{width:72px;height:50px;object-fit:cover;border-radius:6px;cursor:pointer;opacity:.6;flex-shrink:0;border:2px solid transparent}
+    .brand-modal__thumb.active,.brand-modal__thumb:hover{opacity:1;border-color:var(--color-primary)}
+    .brand-modal__body{padding:1.2rem 1.5rem 1.5rem}
+    .brand-modal__desc{color:var(--color-text-muted);font-size:.95rem;margin-bottom:1.1rem;line-height:1.65}
+    .brand-modal__no-photos{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem 1.5rem;text-align:center;gap:.6rem;background:var(--color-surface-alt,#f0f0f0)}
+    .brand-modal__no-photos span{font-size:3rem}
+    .brand-modal__no-photos p{color:var(--color-text-muted);font-size:.9rem}
+    .brand-clickable{cursor:pointer;transition:transform .18s,box-shadow .18s}
+    .brand-clickable:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.14)}
+    .brand-view-photos{display:inline-block;margin-top:.5rem;font-size:.78rem;color:var(--color-primary);font-weight:600}
+  </style>  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232d6a2e'/><text x='16' y='22' font-family='Arial Black' font-size='16' font-weight='900' fill='white' text-anchor='middle'>JR</text></svg>">
   
   <!-- Structured Data -->
@@ -282,10 +308,19 @@
           <div class="brand-item__icon">O</div>
           <div class="brand-item__name">Oberto</div>
         </div>
-        <div class="brand-item">
-          <div class="brand-item__icon">R</div>
-          <div class="brand-item__name">Recuperar</div>
-        </div>
+        <div class="brand-item"><div class="brand-item__icon">R</div><div class="brand-item__name">Recuperar</div></div>
+        <div class="brand-item brand-clickable" data-brand="XCMG" role="button" tabindex="0"><div class="brand-item__icon">XC</div><div class="brand-item__name">XCMG</div></div>
+        <div class="brand-item brand-clickable" data-brand="Zolid" role="button" tabindex="0"><div class="brand-item__icon">Z</div><div class="brand-item__name">Zolid</div></div>
+        <div class="brand-item brand-clickable" data-brand="FEBRA" role="button" tabindex="0"><div class="brand-item__icon">F</div><div class="brand-item__name">FEBRA</div></div>
+        <div class="brand-item brand-clickable" data-brand="TOOLKING" role="button" tabindex="0"><div class="brand-item__icon">TK</div><div class="brand-item__name">TOOLKING</div></div>
+        <div class="brand-item brand-clickable" data-brand="JyM MORO" role="button" tabindex="0"><div class="brand-item__icon">JM</div><div class="brand-item__name">JyM MORO</div></div>
+        <div class="brand-item brand-clickable" data-brand="AGROFENIX" role="button" tabindex="0"><div class="brand-item__icon">AF</div><div class="brand-item__name">AGROFENIX</div></div>
+        <div class="brand-item brand-clickable" data-brand="CELE" role="button" tabindex="0"><div class="brand-item__icon">C</div><div class="brand-item__name">CELE</div></div>
+        <div class="brand-item brand-clickable" data-brand="FABRINOR" role="button" tabindex="0"><div class="brand-item__icon">FB</div><div class="brand-item__name">FABRINOR</div></div>
+        <div class="brand-item brand-clickable" data-brand="ROTORPLAST" role="button" tabindex="0"><div class="brand-item__icon">RP</div><div class="brand-item__name">ROTORPLAST</div></div>
+        <div class="brand-item brand-clickable" data-brand="ASCANELLI" role="button" tabindex="0"><div class="brand-item__icon">AS</div><div class="brand-item__name">ASCANELLI</div></div>
+        <div class="brand-item brand-clickable" data-brand="COMOFRA" role="button" tabindex="0"><div class="brand-item__icon">CF</div><div class="brand-item__name">COMOFRA</div></div>
+        <div class="brand-item brand-clickable" data-brand="AKRON" role="button" tabindex="0"><div class="brand-item__icon">AK</div><div class="brand-item__name">AKRON</div></div>
       </div>
     </div>
   </section>
@@ -394,23 +429,23 @@
       </div>
 
       <div style="margin-top: var(--space-12);">
-        <h3 style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; margin-bottom: var(--space-6); text-align: center;" class="reveal">Implementos Agrícolas</h3>
+                <h3 style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; margin-bottom: var(--space-6); text-align: center;" class="reveal">Implementos y Marcas Disponibles</h3>
         <div class="parts-grid reveal">
-          <div class="part-card">
-            <div class="part-card__icon">⚙️</div>
-            <h4 class="part-card__title">Grosspal</h4>
-            <p class="part-card__desc">Implementos agrícolas de fabricación nacional. Rastras, rolos, desmalezadoras y más.</p>
-          </div>
-          <div class="part-card">
-            <div class="part-card__icon">🔧</div>
-            <h4 class="part-card__title">Baldan / BIA</h4>
-            <p class="part-card__desc">Arados, rastras y equipos de labranza de alta durabilidad y rendimiento.</p>
-          </div>
-          <div class="part-card">
-            <div class="part-card__icon">🏗️</div>
-            <h4 class="part-card__title">Palas Frontales Oberto</h4>
-            <p class="part-card__desc">Palas frontales adaptables a distintos modelos de tractores. Robustas y versátiles.</p>
-          </div>
+          <div class="part-card"><div class="part-card__icon">&#9881;&#65039;</div><h4 class="part-card__title">Grosspal</h4><p class="part-card__desc">Implementos de fabricacion nacional.</p></div>
+          <div class="part-card"><div class="part-card__icon">&#128295;</div><h4 class="part-card__title">Baldan / BIA</h4><p class="part-card__desc">Arados y equipos de labranza.</p></div>
+          <div class="part-card"><div class="part-card__icon">&#127959;&#65039;</div><h4 class="part-card__title">Palas Frontales Oberto</h4><p class="part-card__desc">Palas frontales para tractores.</p></div>
+          <div class="part-card brand-clickable" data-brand="XCMG" role="button" tabindex="0"><div class="part-card__icon">&#128679;</div><h4 class="part-card__title">XCMG</h4><p class="part-card__desc">Maquinaria de construccion y agricola de clase mundial.</p><span class="brand-view-photos">&#128247; Ver fotos</span></div>
+          <div class="part-card brand-clickable" data-brand="Zolid" role="button" tabindex="0"><div class="part-card__icon">&#128297;</div><h4 class="part-card__title">Zolid</h4><p class="part-card__desc">Herramientas de alta durabilidad.</p><span class="brand-view-photos">&#127760; Ver catalogo</span></div>
+          <div class="part-card brand-clickable" data-brand="FEBRA" role="button" tabindex="0"><div class="part-card__icon">&#127807;</div><h4 class="part-card__title">FEBRA</h4><p class="part-card__desc">Implementos agricolas nacionales.</p><span class="brand-view-photos">&#127760; Ver catalogo</span></div>
+          <div class="part-card brand-clickable" data-brand="TOOLKING" role="button" tabindex="0"><div class="part-card__icon">&#128736;&#65039;</div><h4 class="part-card__title">TOOLKING</h4><p class="part-card__desc">Herramientas para el productor.</p><span class="brand-view-photos">&#127760; Ver catalogo</span></div>
+          <div class="part-card brand-clickable" data-brand="JyM MORO" role="button" tabindex="0"><div class="part-card__icon">&#128668;</div><h4 class="part-card__title">JyM MORO</h4><p class="part-card__desc">Implementos de fabricacion argentina.</p><span class="brand-view-photos">&#128247; Ver fotos</span></div>
+          <div class="part-card brand-clickable" data-brand="AGROFENIX" role="button" tabindex="0"><div class="part-card__icon">&#127806;</div><h4 class="part-card__title">AGROFENIX</h4><p class="part-card__desc">Acoplados, montajes y tolvas.</p><span class="brand-view-photos">&#128247; Ver fotos</span></div>
+          <div class="part-card brand-clickable" data-brand="CELE" role="button" tabindex="0"><div class="part-card__icon">&#9889;</div><h4 class="part-card__title">CELE</h4><p class="part-card__desc">Equipos electricos para el agro.</p><span class="brand-view-photos">&#127760; Ver catalogo</span></div>
+          <div class="part-card brand-clickable" data-brand="FABRINOR" role="button" tabindex="0"><div class="part-card__icon">&#127981;</div><h4 class="part-card__title">FABRINOR</h4><p class="part-card__desc">Escarificadores y gruas desde Armstrong.</p><span class="brand-view-photos">&#128247; Ver fotos</span></div>
+          <div class="part-card brand-clickable" data-brand="ROTORPLAST" role="button" tabindex="0"><div class="part-card__icon">&#128260;</div><h4 class="part-card__title">ROTORPLAST</h4><p class="part-card__desc">Tanques plasticos y silos.</p><span class="brand-view-photos">&#128247; Ver fotos</span></div>
+          <div class="part-card brand-clickable" data-brand="ASCANELLI" role="button" tabindex="0"><div class="part-card__icon">&#127807;</div><h4 class="part-card__title">ASCANELLI</h4><p class="part-card__desc">Tolvas, sembradoras y mixers. +60 anos.</p><span class="brand-view-photos">&#128247; Ver fotos</span></div>
+          <div class="part-card brand-clickable" data-brand="COMOFRA" role="button" tabindex="0"><div class="part-card__icon">&#128167;</div><h4 class="part-card__title">COMOFRA</h4><p class="part-card__desc">Maquinaria agricola con +60 anos.</p><span class="brand-view-photos">&#127760; Ver catalogo</span></div>
+          <div class="part-card brand-clickable" data-brand="AKRON" role="button" tabindex="0"><div class="part-card__icon">&#127942;</div><h4 class="part-card__title">AKRON</h4><p class="part-card__desc">Tolvas GranMax y embolsadoras.</p><span class="brand-view-photos">&#127760; Ver catalogo</span></div>
         </div>
       </div>
     </div>
@@ -719,5 +754,9 @@
       startAuto();
     })();
   </script>
-</body>
+
+  <div class="brand-modal-overlay" id="brandModal" role="dialog" aria-modal="true"><div class="brand-modal"><div class="brand-modal__header"><div class="brand-modal__title" id="brandModalTitle"></div><button class="brand-modal__close" id="brandModalClose" aria-label="Cerrar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div id="brandModalGallery"></div><div class="brand-modal__body"><p class="brand-modal__desc" id="brandModalDesc"></p><a class="btn btn--green" id="brandModalWebsite" href="#" target="_blank" rel="noopener noreferrer">Ver sitio oficial</a></div></div></div>
+  <script>
+  (function(){var D={'XCMG':{desc:'Lider mundial: excavadoras, gruas, retroexcavadoras.',website:'https://xcmglatam.com.ar/',images:['https://plum-wolverine-751897.hostingersite.com/wp-content/uploads/2025/08/RETRO.jpg','https://plum-wolverine-751897.hostingersite.com/wp-content/uploads/2025/08/excavadora.jpg','https://plum-wolverine-751897.hostingersite.com/wp-content/uploads/2025/08/GRUA.jpg','https://plum-wolverine-751897.hostingersite.com/wp-content/uploads/2025/08/MINICARGADORA.jpg','https://plum-wolverine-751897.hostingersite.com/wp-content/uploads/2025/08/Compactadores-1.jpg']},'Zolid':{desc:'Herramientas de alta durabilidad para el campo.',website:'https://www.agrofy.com.ar/',images:[]},'FEBRA':{desc:'Implementos para los suelos argentinos.',website:'https://febra.com.ar/',images:[]},'TOOLKING':{desc:'Herramientas para el productor agropecuario.',website:'https://www.agrofy.com.ar/',images:[]},'JyM MORO':{desc:'+25 anos fabricando rastras, rolos y tolvas desde Las Parejas, Santa Fe.',website:'https://moroimplementos.com.ar/',images:['https://moroimplementos.com.ar/wp-content/uploads/2025/06/empresa.jpg']},'AGROFENIX':{desc:'Acoplados, montajes autodescargables y tolvas.',website:'https://agrofenix.com.ar/',images:['https://agrofenix.com.ar/wp-content/uploads/2022/10/taller-inicio-1024x683.jpg','https://agrofenix.com.ar/wp-content/uploads/2022/09/DSC_0020-scaled.jpg','https://agrofenix.com.ar/wp-content/uploads/2022/10/Montaje-25-TT-tipo-autodescargable-1-1-1024x768.jpeg','https://agrofenix.com.ar/wp-content/uploads/2022/10/montaje-inicio-1024x683.jpg','https://agrofenix.com.ar/wp-content/uploads/2022/10/tolva-1-1024x768.jpeg']},'CELE':{desc:'Equipos electricos para el agro.',website:'https://www.agrofy.com.ar/',images:[]},'FABRINOR':{desc:'+35 anos fabricando escarificadores y gruas desde Armstrong.',website:'https://fabrinorsa.com.ar/',images:['https://fabrinorsa.com.ar/wp-content/uploads/2022/05/fabrinor_grua_1.png','https://fabrinorsa.com.ar/wp-content/uploads/2021/05/IMG_20220523_152837748-270x290.jpg','https://fabrinorsa.com.ar/wp-content/uploads/2021/05/serv_chapas1-270x290.jpg']},'ROTORPLAST':{desc:'Tanques plasticos, silos y comederos para el campo.',website:'https://www.rotortanques.com/',images:['https://www.rotortanques.com/img/home-page/tanque-horizontal-plastico.png','https://www.rotortanques.com/img/home-page/tanque-vertical-plastico.png','https://www.rotortanques.com/img/home-page/silos-de-plastico.png','https://www.rotortanques.com/img/home-page/comederos-bebederos-plastico.png','https://www.rotortanques.com/img/home-page/equipos-de-riego.png']},'ASCANELLI':{desc:'+60 anos fabricando tolvas EVO, sembradoras y mixers desde Rio Tercero.',website:'https://ascanellisa.com.ar/',images:['https://ascanellisa.com.ar/wp-content/uploads/2026/03/Evo-43-Tn.jpg','https://ascanellisa.com.ar/wp-content/uploads/2023/05/ascanelli_evo_43tn.png','https://ascanellisa.com.ar/wp-content/uploads/2024/02/sembradora_ascanelli_rs5000_portada.jpg','https://ascanellisa.com.ar/wp-content/uploads/2025/02/MIXER-SIMPLE-ASCANELLI-RS-1600-EVO.png','https://ascanellisa.com.ar/wp-content/uploads/2025/05/EMBOLSADORA-EVO-01.png']},'COMOFRA':{desc:'+60 anos fabricando maquinaria agricola.',website:'https://maquinac.com/empresas/comofra/',images:[]},'AKRON':{desc:'Tolvas GranMax, embolsadoras y extractoras desde San Francisco.',website:'https://akron.com.ar/',images:[]}};var cb=null,ci=0,ov=document.getElementById('brandModal'),tl=document.getElementById('brandModalTitle'),gl=document.getElementById('brandModalGallery'),dl=document.getElementById('brandModalDesc'),wl=document.getElementById('brandModalWebsite'),cl=document.getElementById('brandModalClose');function op(k){var d=D[k];if(!d)return;cb=k;ci=0;tl.textContent=k;dl.textContent=d.desc;wl.href=d.website;rn(d);ov.classList.add('open');document.body.style.overflow='hidden';}function rn(d){if(!d.images||!d.images.length){gl.innerHTML='<div class="brand-modal__no-photos"><span>&#127981;</span><p>Visita el sitio oficial para ver el catalogo.</p></div>';return;}var imgs=d.images,nav=imgs.length>1?'<button class="brand-modal__nav brand-modal__nav--prev" id="bP">&#9664;</button><button class="brand-modal__nav brand-modal__nav--next" id="bN">&#9654;</button>':'',th=imgs.length>1?'<div class="brand-modal__thumbs">'+imgs.map(function(s,i){return'<img class="brand-modal__thumb'+(i===0?' active':'')+''+'" src="'+s+'" data-i="'+i+'" loading="lazy">'}).join('')+'</div>':'';gl.innerHTML='<div class="brand-modal__gallery-wrap"><img class="brand-modal__main-img" id="bM" src="'+imgs[0]+'" loading="lazy">'+nav+'</div>'+th;gl.querySelectorAll('.brand-modal__thumb').forEach(function(t){t.onclick=function(){go(+this.dataset.i);};});var bp=document.getElementById('bP'),bn=document.getElementById('bN');if(bp){bp.onclick=function(){go((ci-1+imgs.length)%imgs.length);};}if(bn){bn.onclick=function(){go((ci+1)%imgs.length);};}}function go(i){ci=i;var m=document.getElementById('bM');if(m)m.src=D[cb].images[i];gl.querySelectorAll('.brand-modal__thumb').forEach(function(t,j){t.classList.toggle('active',j===i);});}function cl2(){ov.classList.remove('open');document.body.style.overflow='';cb=null;}cl.onclick=cl2;ov.onclick=function(e){if(e.target===ov)cl2();};document.addEventListener('keydown',function(e){if(e.key==='Escape')cl2();});document.querySelectorAll('[data-brand]').forEach(function(el){el.onclick=function(){op(this.dataset.brand);};});})();
+  </script></body>
 </html>
